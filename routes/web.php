@@ -4,8 +4,7 @@
 /*Start Profile ႏွင့္သက္ဆုိင္ရာ*/
 Route::get('/allprofile','ProfileController@allprofile');
 Route::get('/yourprofile','ProfileController@yourprofile');
-//git စမ္းျခင္း
-//second git စမ္းျခင္း
+
 /*End Profile ႏွင့္သက္ဆုိင္ရာ */
 
 /*home ႏွင့္သက္ဆိုင္ရာမ်ား*/
