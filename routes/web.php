@@ -1,20 +1,16 @@
 <?php
 
 
-/*Start Profile ႏွင့္သက္ဆုိင္ရာ*/
-Route::get('/allprofile','ProfileController@allprofile');
-Route::get('/yourprofile','ProfileController@yourprofile');
 
-/*End Profile ႏွင့္သက္ဆုိင္ရာ */
 
 /*home ႏွင့္သက္ဆိုင္ရာမ်ား*/
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('user/imagecropuser','HomeController@imagecropuser');
 Route::get('/cpanel','HomeController@cpanel');
 Route::get('/blog','HomeController@blog');
 Route::get('/userpost/{id}','HomeController@post');
 Route::get('/categoryfilter/{category}','HomeController@categoryfilter');
+Route::get('/allusers','HomeController@allusers');
 /*End home ႏွင့္ သက္ဆုိင္ရာမ်ား*/
 
 /*post ဆုိင္ရာ*/
@@ -31,6 +27,8 @@ Route::get('/photogallery','ControlPanelController@photogallery');
 Route::get('/testslimscroll','TestController@testslimscroll');
 Route::get('/testimagecrop',['uses'=>'TestController@testimagecrop']);
 Route::post('/testimagecrop','TestController@testimagecroppost');
+Route::get('/testjquerycrop','TestController@testjquerycrop');
+Route::post('/testjquerycrop','TestController@testjquerycroppost');
 /*End Test ဆုိင္ရာ*/
 
 /*Category ဆုိင္ရာ*/

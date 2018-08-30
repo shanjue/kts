@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\UploadedFile;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class RegisterController extends Controller
 {
@@ -63,10 +64,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $image_name = $data['name'].'.jpg';
+        Image::make($data['profile'])->resize(null, 400,
+         function($constraint){
+           $constraint->aspectRatio();
+         })->save("storage/userprofile/$image_name");
+         
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'profile'=>$data['profile'],
+            'profile'=>$image_name,
             'password' => bcrypt($data['password']),
         ]);
     }

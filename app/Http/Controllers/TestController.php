@@ -41,5 +41,13 @@ class TestController extends Controller
       return view('ControlPanel/test/testslimscroll');
     }
     /*End testslimscroll ဆိုင္ရာ*/
+    public function testjquerycrop()
+    {
+      return view('ControlPanel/test/test-jquery-cropper');
+    }
 
+    public function testjquerycroppost()
+    {
+
+    }
 }

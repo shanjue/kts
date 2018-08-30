@@ -9,26 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
-    public function imagecropuser(Request $request)
-    {
-      $data = $request->image;
-      list($type, $data) = explode(';', $data);
 
-      list(, $data)      = explode(',', $data);
-
-
-      $data = base64_decode($data);
-
-      $image_name= time().'.jpg';
-      //folder တည္ေဆာက္ေသာအခါ public/ မထည့္ရပါ။
-      // Storage::makeDirectory("public".Auth::user()->name);
-      $path = public_path() . "/storage/userprofile/" . $image_name;
-
-      file_put_contents($path, $data);
-
-
-      return response()->json(['success'=>$image_name]);
-    }
 
     public function index()
     {
@@ -64,5 +45,9 @@ class HomeController extends Controller
     public function cpanel()
     {
       return view('ControlPanel/welcome');
+    }
+    public function allusers()
+    {
+      return view('allusers');
     }
 }
