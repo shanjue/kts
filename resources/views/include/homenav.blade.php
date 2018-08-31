@@ -7,19 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{{url('/photogallery')}}">MY Photo Gallery</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('/cpanel') }}">MY Control Panel</a>
+          <a class="nav-link" href="{{url('/blog')}}"><i class="fa fa-newspaper"></i> New Posts</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="about.html">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="services.html">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,28 +24,8 @@
             <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
           </div>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Blog
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-            <a class="dropdown-item" href="{{url('/blog')}}">New Feed</a>
-            <a class="dropdown-item" href="">Blog Home 2</a>
-            <a class="dropdown-item" href="blog-post.html">Blog Post</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Other Pages
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-            <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-            <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-            <a class="dropdown-item" href="faq.html">FAQ</a>
-            <a class="dropdown-item" href="404.html">404</a>
-            <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-          </div>
-        </li>
+
+
         @if(Auth::guest())
         <li class="nav-item ">
           <a class="nav-link" href="{{url('/login')}}">Login</a>
@@ -79,6 +50,9 @@
           </div>
         </li>
         @endif
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('/cpanel') }}"><i class="fas fa-cogs"></i>.</a>
+        </li>
       </ul>
     </div>
   </div>

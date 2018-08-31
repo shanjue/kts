@@ -6,6 +6,8 @@
     <meta name="author" content="">
     <title>Modern Business - Start Bootstrap Template</title>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    
     <!-- Bootstrap core CSS -->
     <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
@@ -24,7 +26,7 @@
     <!-- Page Content -->
     <div class="container">
       @include('include/error')
-      
+
       @section('content')
         @show
 

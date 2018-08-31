@@ -11,16 +11,14 @@ Route::get('/blog','HomeController@blog');
 Route::get('/userpost/{id}','HomeController@post');
 Route::get('/categoryfilter/{category}','HomeController@categoryfilter');
 Route::get('/allusers','HomeController@allusers');
+Route::get('/gallery','HomeController@gallery');
 /*End home ႏွင့္ သက္ဆုိင္ရာမ်ား*/
 
 /*post ဆုိင္ရာ*/
 Route::get('/post/addpost','ControlPanelController@addpost');
 Route::post('/post/addpost','ControlPanelController@submitpost')->name('addpost');
 Route::get('/viewpost/{id}','ControlPanelController@viewpost');
-Route::post('/post/imagecroppost','ControlPanelController@imagecroppost');
-Route::get('/imagecroppostdel/{id}','ControlPanelController@imagecroppostdel');
 Route::get('/post/showallposts','ControlPanelController@showallposts');
-Route::get('/photogallery','ControlPanelController@photogallery');
 /*End post ဆုိင္ရာ*/
 
 /*Start Test ဆုိင္ရာ*/

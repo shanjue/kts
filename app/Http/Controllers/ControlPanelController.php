@@ -13,7 +13,7 @@ use App\Model\ControlPanel\Uploadphoto;
 
 class ControlPanelController extends Controller
 {
-    
+
     /**
      * Create a new controller instance.
      *
@@ -66,56 +66,8 @@ class ControlPanelController extends Controller
       $post->category()->sync(Request()->categories);
       return redirect('/post/showallposts');
     }
-    public function imagecroppostdel($id)
-    {
-      return $id;
-    }
-    public function photogallery()
-    {
-      if (Request()->hasFile('image')) {
-        foreach (Request()->image as $image) {
-          $imageName = $image->getClientOriginalName();
-          $image->storeAs('public/'.Auth::user()->name , $imageName);
 
-          $uploadphoto = new Uploadphoto();
-          $uploadphoto->name = $imageName;
-          $uploadphoto->user_id = Auth::user()->id;
-          $uploadphoto->save();
-        }
-      }
-      $uploadphotos = Uploadphoto::all();
-      return view('ControlPanel/post/photogallery',[
-        'uploadphotos' => $uploadphotos
-      ]);
-    }
-
-
-
-
-    public function imagecroppost(Request $request)
-    {
-      $data = $request->image;
-      list($type, $data) = explode(';', $data);
-
-      list(, $data)      = explode(',', $data);
-
-
-      $data = base64_decode($data);
-
-      $image_name= time().'.jpg';
-      //folder တည္ေဆာက္ေသာအခါ public/ မထည့္ရပါ။
-      Storage::makeDirectory("public".Auth::user()->name);
-      $path = public_path() . "/storage/".Auth::user()->name."/" . $image_name;
-
-      file_put_contents($path, $data);
-
-      $uploadphoto = new Uploadphoto();
-      $uploadphoto->name = $image_name;
-      $uploadphoto->user_id = Auth::user()->id;
-      $uploadphoto->save();
-
-      return response()->json(['success'=>'done']);
-    }
+  
 
     /*End Post ဆုိင္ရာ*/
 

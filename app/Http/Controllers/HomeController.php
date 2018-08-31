@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\ControlPanel\Post;
 use App\Model\ControlPanel\Category;
 use Illuminate\Support\Facades\Storage;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -48,6 +49,9 @@ class HomeController extends Controller
     }
     public function allusers()
     {
-      return view('allusers');
+      $users = User::all();
+      return view('allusers',[
+        'users'=>$users
+      ]);
     }
 }
