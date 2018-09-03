@@ -46,22 +46,36 @@
 
 
         <div class="features-row alert alert-warning">
+          @include('include.error')
           <div class="container alert alert-primary">
-            <h2 class="text-center">Edit Gallery of {{$user->name}}</h2>
+            <div class="row">
+              <div class="col-md-5">
+                <a href="{{url('/yourgallery/'.$user->id) }}" class="btn btn-primary btn-sm" style="float:left;">Back </a>
+                <form  method="post" enctype="multipart/form-data">
+                  {{csrf_field() }}
+                  <input type="file" name="image" class="float-left btn-sm">
+                  <input type="submit" value="Upload Image " class="btn btn-success btn-sm float-left">
+                </form>
+              </div>
+              <div class="col-md-6">
+                <h2 >Hi <em>{{$user->name}}</em> Your  Gallery</h2>
+              </div>
+            </div><br>
+
             <div class="row">
               @foreach($user->uploadphoto as $photo)
               <div class="col-12">
                 <img class="advanced-feature-img-left" src="{{asset('storage/'.$user->created_at->toDateString().$user->id.'/'.$photo->name)}}" alt="" width="400px">
                 <div class="wow fadeInRight">
                   <form method="post">
-                  {{csrf_field() }}  
+                  {{csrf_field() }}
                   <input type="hidden" name="photoid" value="{{$photo->id}}">
-                  <i class="ion-ios-color-filter-outline wow fadeInRight" class="wow fadeInRight" data-wow-duration="0.5s"></i>
+                  <i class="ion-ios-navigate-outline wow fadeInRight" class="wow fadeInRight" data-wow-duration="0.5s"></i>
                   <input type="text" name="place" style="width:400px;height:50px;" placeholder="Place" value="{{$photo->place}}"><br><br>
                   <i class="ion-ios-paper-outline " data-wow-delay="0.2s" data-wow-duration="0.5s"></i>
                   <textarea name="note" rows="8" cols="50" placeholder="Some note" >{{$photo->note}}</textarea><br>
                   <i class="ion-ios-barcode-outline wow fadeInRight" data-wow-delay="0.4" data-wow-duration="0.5s"></i><br>
-                  <input type="submit" value="Update">
+                  <input type="submit" value="Update" class="btn btn-primary btn-sm"> or <a href="{{url('/delgallery/'.$photo->id)}}" class="btn btn-outline-danger btn-sm">Delete</a>
                   </form>
                 </div>
               </div>

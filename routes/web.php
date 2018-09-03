@@ -23,6 +23,7 @@ Route::get('/yourgallery/{id}','ControlPanelController@yourgallery');
 Route::post('/yourgallery/{id}','ControlPanelController@yourgallerysubmit');
 Route::get('/editgallery/{id}','ControlPanelController@editgallery');
 Route::post('/editgallery/{id}','ControlPanelController@updategallery');
+Route::get('/delgallery/{id}','ControlPanelController@delgallery');
 /*End gallery*/
 
 /*Start Test ဆုိင္ရာ*/

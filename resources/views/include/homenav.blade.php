@@ -39,7 +39,7 @@
         @else
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user"></i>{{ Auth::user()->name}}
+            <i class="fas fa-user"></i> {{ Auth::user()->name}}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
             <a class="dropdown-item" href="{{url('/yourgallery/'.Auth::user()->id)}}"><i class="fas fa-images"></i> My Gallery</a>

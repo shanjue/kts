@@ -81,6 +81,9 @@ class ControlPanelController extends Controller
     }
     public function yourgallerysubmit($id)
     {
+      $this->validate(Request(),[
+        'image'=>'required|image|max:2048|mimes:jpeg,png,jpg'
+      ]);
       $foldername = Auth::user()->created_at->toDateString() . Auth::user()->id;
       Storage::makeDirectory("public/$foldername");
 
@@ -104,11 +107,36 @@ class ControlPanelController extends Controller
     }
     public function updategallery()
     {
-      $uploadphoto = Uploadphoto::find(Request()->photoid);
-      $uploadphoto->place =Request()->place;
-      $uploadphoto->note = Request()->note;
-      $uploadphoto->save();
-      return back();
+      $this->validate(Request(),[
+        'image'=>'required|image|max:2048|mimes:jpeg,png,jpg'
+      ]);
+
+      if (Request()->photoid) {
+        $uploadphoto = Uploadphoto::find(Request()->photoid);
+        $uploadphoto->place =Request()->place;
+        $uploadphoto->note = Request()->note;
+        $uploadphoto->save();
+        return back()->with('message','Update Successful Place = ( '.Request()->place.' ) And '.'Note = ( ' .Request()->note .' ).');
+      }
+      if (Request()->image) {
+        $foldername = Auth::user()->created_at->toDateString() . Auth::user()->id;
+        Storage::makeDirectory("public/$foldername");
+
+        $imagename = time() . '.jpg';
+        Image::make(Request()->image)->save("storage/$foldername/"."origin"."$imagename")->fit('300','300')->save("storage/$foldername/$imagename");
+
+        $uploadphoto = new Uploadphoto();
+        $uploadphoto->name = $imagename;
+        $uploadphoto->user_id = Auth::user()->id;
+        $uploadphoto->save();
+        return back()->with('message','successful Upload Image');
+      }
+      
+    }
+    public function delgallery($id)
+    {
+      Uploadphoto::find($id)->delete();
+      return back()->with('message','Delete Image Successful');
     }
     /*end gallery ဆိုင္ရာ*/
 

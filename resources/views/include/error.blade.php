@@ -5,5 +5,8 @@
 @endif
 
 @if (session('message'))
-	<p class="alert alert-success">{{ session('message') }}</p>
+<div class="text-center">
+  <p class="alert alert-success">{{ session('message') }}</p>
+
+</div>
 @endif

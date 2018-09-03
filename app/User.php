@@ -9,7 +9,7 @@ class User extends Authenticatable
 {
     public function uploadphoto()
     {
-      return $this->hasMany('App\Model\ControlPanel\Uploadphoto');
+      return $this->hasMany('App\Model\ControlPanel\Uploadphoto')->orderBy('id','desc');
     }
 
     use Notifiable;

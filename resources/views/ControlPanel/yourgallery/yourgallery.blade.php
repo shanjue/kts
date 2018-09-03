@@ -57,9 +57,9 @@
               <input type="submit" value="Upload Image " class="btn btn-outline-success float-left">
             </form>
             <a href="{{url('/editgallery/'.$user->id)}}" class="btn btn-outline-danger" style="margin-left:5px;">Edit or Delete</a>
-            <a href="{{url()->previous()}}" class="btn btn-outline-primary">Back</a><br>
+            <a href="{{url('/home')}}" class="btn btn-outline-primary">Back</a><br>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-4" >
                 <div class="gallery-item wow fadeInUp">
                   <a href="{{asset('storage/userprofile/'.$user->profile)}}" class="gallery-popup">
                     <img src="{{asset('storage/userprofile/'.$user->profile)}}" alt="" class="img-thumbnail rounded float-left" style="width:200px;">
@@ -86,7 +86,7 @@
         <div class="row no-gutters alert-secondary alert">
 
           @foreach($user->uploadphoto as $photo)
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6" data-toggle="tooltip" data-html="true" title="<i class='fas fa-location-arrow'></i> {{$photo->place}} <i class='fas fa-sticky-note'></i> {{$photo->note}}">
             <div class="gallery-item wow fadeInUp">
               <a href="{{asset('storage/' . $user->created_at->toDateString() . $user->id . '/origin' . $photo->name)}}" class="gallery-popup">
                 <img src="{{asset('storage/'. $user->created_at->toDateString() . $user->id . '/' . $photo->name )}}" alt="">
@@ -119,6 +119,10 @@
 
   <!-- Template Main Javascript File -->
   <script src="{{asset('Avilon/js/main.js')}}"></script>
-
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
 </body>
 </html>
