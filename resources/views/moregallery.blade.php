@@ -23,20 +23,7 @@
 
   <!-- Main Stylesheet File -->
   <link href="{{asset('Avilon/css/style.css')}}" rel="stylesheet">
-<style >
-  .total
-  {
-      background: lightgray;
-      border-radius: 60px;
-      padding-top: 40px;
-  }
-  .total:hover
-  {
-    background: gray;
-    border-radius: 50px;
 
-  }
-</style>
   <!-- =======================================================
     Theme Name: Avilon
     Theme URL: https://bootstrapmade.com/avilon-bootstrap-landing-page-template/
@@ -54,51 +41,61 @@
     <!--==========================
       Gallery Section
     ============================-->
-    @foreach($users as $user)
     <section id="gallery">
-      <div class="container">
+      <div class="container-fluid">
         <div class="section-header">
-          <h3 class="section-title">Gallery Of <em>{{$user->name}}</em> @auth @if(Auth::user()->id == $user->id)<small><a href="{{url('editgallery/'.$user->id)}}" data-toggle="tooltip" title="Edit Your Gallery"><i class="fas fa-edit"></i></a></small> @endif @endauth</h3>
-
+          <h3 class="section-title">All Photos Of {{$user->name}}</h3>
           <span class="section-divider"></span>
           <p class="section-description">{{$user->note}}</p>
         </div>
+        @include('include/error')
+        <div class="row">
+          <div class="col-md-7 alert alert-warning wow fadeInLeft offset-1">
 
-        <div class="row no-gutters">
-          <!-- photo မ်ားကို count လုပ္ထားသည္ -->
-          <?php $total = $user->uploadphoto->count(); ?>
-          <?php $total -= 5 ; ?>
-          <?php $count = 0; ?>
+            <br>
+            <div class="row">
+              <div class="col-md-4" >
+                <div class="gallery-item wow fadeInUp">
+                  <a href="{{asset('storage/userprofile/'.$user->profile)}}" class="gallery-popup">
+                    <img src="{{asset('storage/userprofile/'.$user->profile)}}" alt="" class="img-thumbnail rounded float-left" style="width:200px;">
+                  </a>
+                </div>
+
+              </div>
+              <div class="col-md-4 wow fadeInUp " style="padding:20px;">
+                <div><i class="fas fa-user"></i> - {{$user->name}}</div>
+                <div><i class="fas fa-envelope"></i> - {{$user->email}}</div>
+                <div><i class="fas fa-phone"></i> - {{$user->phone}}</div>
+                <div><i class="fas fa-graduation-cap"></i> - {{$user->education}}</div>
+                <div><a href="{{url()->previous()}}" class="btn btn-outline-primary">Back</a></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="row no-gutters alert-secondary alert">
 
           @foreach($user->uploadphoto as $photo)
-          <?php $count++; ?>
-
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6" data-toggle="tooltip" data-html="true" title="<i class='fas fa-location-arrow'></i> {{$photo->place}} <i class='fas fa-sticky-note'></i> {{$photo->note}}">
             <div class="gallery-item wow fadeInUp">
-              <a href="{{asset('storage/'.$user->created_at->toDateString().$user->id.'/origin'.$photo->name)}}" class="gallery-popup">
-                <img src="{{asset('storage/'.$user->created_at->toDateString().$user->id.'/'.$photo->name)}}" alt="">
+              <a href="{{asset('storage/' . $user->created_at->toDateString() . $user->id . '/origin' . $photo->name)}}" class="gallery-popup">
+                <img src="{{asset('storage/'. $user->created_at->toDateString() . $user->id . '/' . $photo->name )}}" alt="">
               </a>
             </div>
           </div>
-          <?php if($count == 5) break; ?>
-
           @endforeach
-          <!-- ေနာက္ဆံုးလုိခ်င္ေသာ count number အကြက္ကို foreach အျပင္မွာထားရသည္။ -->
-          @if($count == 5)
-          <div class="col-lg-4 col-md-6 gallery-item wow fadeInUp total">
-              <a href="{{url('/moregallery/'.$user->id)}}"  style="font-size:200px;">
-                +{{$total}}
-              </a>
-              <h5>More</h5>
-          </div>
-          @endif
 
         </div>
 
       </div>
     </section><!-- #gallery -->
 
-    @endforeach
+
   </main>
 
 
@@ -117,10 +114,10 @@
 
   <!-- Template Main Javascript File -->
   <script src="{{asset('Avilon/js/main.js')}}"></script>
-  <script>
+<script>
   $(function () {
   $('[data-toggle="tooltip"]').tooltip();
   });
-  </script>
+</script>
 </body>
 </html>

@@ -61,4 +61,11 @@ class HomeController extends Controller
         'users'=>$users
       ]);
     }
+    public function moregallery($id)
+    {
+      $user = User::find($id);
+      return view('moregallery',[
+        'user'=>$user
+      ]);
+    }
 }

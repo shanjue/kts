@@ -9,6 +9,7 @@ Route::get('/userpost/{id}','HomeController@post');
 Route::get('/categoryfilter/{category}','HomeController@categoryfilter');
 Route::get('/allusers','HomeController@allusers');
 Route::get('/gallery','HomeController@gallery');
+Route::get('/moregallery/{id}','HomeController@moregallery');
 /*End home ႏွင့္ သက္ဆုိင္ရာမ်ား*/
 
 /*post ဆုိင္ရာ*/
@@ -19,6 +20,7 @@ Route::get('/post/showallposts','ControlPanelController@showallposts');
 /*End post ဆုိင္ရာ*/
 
 /*gallery ဆုိင္ရာ*/
+
 Route::get('/yourgallery/{id}','ControlPanelController@yourgallery');
 Route::post('/yourgallery/{id}','ControlPanelController@yourgallerysubmit');
 Route::get('/editgallery/{id}','ControlPanelController@editgallery');
