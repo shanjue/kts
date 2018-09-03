@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 /*home ႏွင့္သက္ဆိုင္ရာမ်ား*/
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -20,6 +17,13 @@ Route::post('/post/addpost','ControlPanelController@submitpost')->name('addpost'
 Route::get('/viewpost/{id}','ControlPanelController@viewpost');
 Route::get('/post/showallposts','ControlPanelController@showallposts');
 /*End post ဆုိင္ရာ*/
+
+/*gallery ဆုိင္ရာ*/
+Route::get('/yourgallery/{id}','ControlPanelController@yourgallery');
+Route::post('/yourgallery/{id}','ControlPanelController@yourgallerysubmit');
+Route::get('/editgallery/{id}','ControlPanelController@editgallery');
+Route::post('/editgallery/{id}','ControlPanelController@updategallery');
+/*End gallery*/
 
 /*Start Test ဆုိင္ရာ*/
 Route::get('/testslimscroll','TestController@testslimscroll');

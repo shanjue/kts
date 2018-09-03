@@ -7,6 +7,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    public function uploadphoto()
+    {
+      return $this->hasMany('App\Model\ControlPanel\Uploadphoto');
+    }
+
     use Notifiable;
 
     /**

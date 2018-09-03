@@ -10,7 +10,10 @@
           <a class="nav-link" href="{{url('/blog')}}"><i class="fa fa-newspaper"></i> New Posts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link" href="{{url('/gallery')}}"><i class="fas fa-images"></i> Gallery</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html"><i class="fas fa-font"></i> About</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -28,26 +31,30 @@
 
         @if(Auth::guest())
         <li class="nav-item ">
-          <a class="nav-link" href="{{url('/login')}}">Login</a>
+          <a class="nav-link" href="{{url('/login')}}"><i class="fas fa-sign-in-alt"></i> Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url('/register')}}">Register</a>
+          <a class="nav-link" href="{{url('/register')}}"><i class="fas fa-user-plus"></i> Register</a>
         </li>
         @else
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{Auth::user()->name}}
+            <i class="fas fa-user"></i>{{ Auth::user()->name}}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+            <a class="dropdown-item" href="{{url('/yourgallery/'.Auth::user()->id)}}"><i class="fas fa-images"></i> My Gallery</a>
             <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
-                         Logout
+                         <i class="fas fa-sign-out-alt"></i> Logout
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
           </div>
+
+
+
         </li>
         @endif
         <li class="nav-item">

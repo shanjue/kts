@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Model\ControlPanel\Category;
 use App\Model\ControlPanel\Post;
-use App\Model\ControlPanel\User;
 use App\Model\ControlPanel\Uploadphoto;
+use App\User;
+use Image;
 
 class ControlPanelController extends Controller
 {
@@ -67,9 +67,50 @@ class ControlPanelController extends Controller
       return redirect('/post/showallposts');
     }
 
-  
+
 
     /*End Post ဆုိင္ရာ*/
+
+    /*gallery ဆိုင္ရာ*/
+    public function yourgallery($id)
+    {
+      $user = User::find($id);
+      return view('ControlPanel/yourgallery/yourgallery',[
+        'user'=>$user
+      ]);
+    }
+    public function yourgallerysubmit($id)
+    {
+      $foldername = Auth::user()->created_at->toDateString() . Auth::user()->id;
+      Storage::makeDirectory("public/$foldername");
+
+      $imagename = time() . '.jpg';
+      Image::make(Request()->image)->save("storage/$foldername/"."origin"."$imagename")->fit('300','300')->save("storage/$foldername/$imagename");
+
+      $uploadphoto = new Uploadphoto();
+      $uploadphoto->name = $imagename;
+      $uploadphoto->user_id = Auth::user()->id;
+      $uploadphoto->save();
+
+      return back()->with('message','Successful Upload Image');
+
+    }
+    public function editgallery($id)
+    {
+      $user = User::find($id);
+      return view('ControlPanel/yourgallery/editgallery',[
+        'user'=>$user
+      ]);
+    }
+    public function updategallery()
+    {
+      $uploadphoto = Uploadphoto::find(Request()->photoid);
+      $uploadphoto->place =Request()->place;
+      $uploadphoto->note = Request()->note;
+      $uploadphoto->save();
+      return back();
+    }
+    /*end gallery ဆိုင္ရာ*/
 
     /*Category ဆိုင္ရာ*/
     public function cat()

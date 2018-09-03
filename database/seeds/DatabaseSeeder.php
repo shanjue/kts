@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         $category = new App\Model\ControlPanel\Category();
         $category->name = 'jQuery';
         $category->save();
-
+        /*End category table အတြက္*/
 
         /*user table အတြက္*/
         $profile = ['shanshan.jpg' , 'juejue.jpg' , 'koko.jpg'];
@@ -59,7 +59,9 @@ class DatabaseSeeder extends Seeder
           $user->password = bcrypt('123456');
           $user->save();
         }
+        /*End user table အတြက္*/
 
+    
 
         /*post_categories table အတြက္*/
         $post_category = new App\Model\ControlPanel\post_category();
