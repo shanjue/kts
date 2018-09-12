@@ -1,5 +1,7 @@
-@extends('layouts/BlogApp')
+@extends('layouts/HomeApp')
 @section('style')
+<!-- Custom styles for this template -->
+<link href="{{asset('css/clean-blog.min.css')}}" rel="stylesheet">
 <style>
 .pagination
 {
@@ -24,28 +26,11 @@
 
 </style>
 @endsection
-@section('back')
-  <a class="navbar-brand" href="{{url('/')}}">Home</a>
-@endsection
+
 @section('content')
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('https://localhost/kts/public/image/cleanblog/home-bg.jpg')">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="site-heading">
-          <h1>Clean Blog</h1>
-          <span class="subheading">A Blog Theme by Start Bootstrap</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+  <br>
 
-<!-- Main Content -->
-
-  <div class="row">
+  <div class="row clean-blog">
     <div class="col-md-2 mx-auto">
       <h2>Category</h2>
 
@@ -91,9 +76,7 @@
       <div class="">
         {{ $posts->links() }}
       </div>
-      <div class="clearfix">
-        <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-      </div>
+      
     </div>
   </div>
 

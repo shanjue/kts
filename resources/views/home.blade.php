@@ -1,5 +1,7 @@
 @extends('layouts/HomeApp')<!-- ; semicolom မပါရပါ -->
 
+@include('include/homecarousel')
+
 @section ('content')
 <h1 class="my-4">Welcome to Modern Business</h1>
 

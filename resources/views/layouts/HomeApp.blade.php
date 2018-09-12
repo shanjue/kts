@@ -7,13 +7,14 @@
     <title>Modern Business - Start Bootstrap Template</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    
+
     <!-- Bootstrap core CSS -->
     <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{{asset('css/modern-business.css')}}" rel="stylesheet">
-
+    @section('style')
+      @show
   </head>
 
   <body>
@@ -21,7 +22,7 @@
     @include('include/homenav')
 
 
-    @include('include/homecarousel')
+    
 
     <!-- Page Content -->
     <div class="container">
