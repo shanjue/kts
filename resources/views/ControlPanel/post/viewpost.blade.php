@@ -1,6 +1,10 @@
-@extends('layouts/BlogApp')
+@extends('layouts/HomeApp')
+@section('style')
+<!-- Custom styles for this template -->
+<link href="{{asset('css/clean-blog.min.css')}}" rel="stylesheet">
+@endsection
 
-@section('content')
+@section('content-for-viewpost-blade')
 <!-- Page Header -->
 <header class="masthead" style="background-image: url('https://localhost/kts/public/image/cleanblog/post-bg.jpg')">
   <div class="overlay"></div>
@@ -24,7 +28,6 @@
   <div class="row">
 
     <div class="col-lg-8 col-md-10 mx-auto">
-      <h4>Category of </h4>@foreach($post->category as $cats) <a href="{{url('categoryfilter',$cats->name)}}" >({{$cats->name}}) </a> @endforeach
       {!! htmlspecialchars_decode($post->content) !!}
     </div>
   </div>

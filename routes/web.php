@@ -13,8 +13,8 @@ Route::get('/moregallery/{id}','HomeController@moregallery');
 /*End home ႏွင့္ သက္ဆုိင္ရာမ်ား*/
 
 /*post ဆုိင္ရာ*/
-Route::get('/post/addpost','ControlPanelController@addpost');
-Route::post('/post/addpost','ControlPanelController@submitpost')->name('addpost');
+Route::get('/addpost','ControlPanelController@addpost');
+Route::post('addpost','ControlPanelController@submitpost')->name('addpost');
 Route::get('/viewpost/{id}','ControlPanelController@viewpost');
 Route::get('/post/showallposts','ControlPanelController@showallposts');
 /*End post ဆုိင္ရာ*/

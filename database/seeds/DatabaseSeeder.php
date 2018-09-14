@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(Faker $faker)
     {
         /*post table အတြက္*/
-        for ($i=0; $i < 3; $i++) {
+        for ($i=0; $i < 7; $i++) {
           $post = new App\Model\ControlPanel\Post();
           $post->whatabout = $faker->sentence();
           $post->content = $faker->paragraph();
@@ -35,17 +35,17 @@ class DatabaseSeeder extends Seeder
         /*End category table အတြက္*/
 
         /*user table အတြက္*/
-        $profile = ['shanshan.jpg' , 'juejue.jpg' , 'koko.jpg'];
-        $name = ['shanshan' , 'juejue' , 'koko'];
-        $email = ['shanshan@gmail.com' , 'juejue@gmail.com' , 'koko@gmail.com'];
-        $phone = ['09773457345','093643252435','09876283422'];
-        $education = ['graduate', 'M.B.B.S', 'B.Sc'];
-        $job = ['driver','Doctor','English Teacher'];
-        $CurAction = ['Attending Repair car class','Training Junior','Sport in School'];
-        $note = ['Power is Mind','Care is better than Treatment','Education is the light for life.'];
-        $address = ['Thanlyin','MDY','YGN'];
+        $profile = ['shanshan.jpg' , 'juejue.jpg' , 'koko.jpg', 'minmin.jpg', 'kyawkyaw.jpg' ,'zawzaw.jpg', 'linlin.jpg' , 'wawa.jpg'];
+        $name = ['shanshan' , 'juejue' , 'koko', 'minmin', 'kyawkyaw', 'zawzaw', 'linlin', 'wawa'];
+        $email = ['shanshan@gmail.com' , 'juejue@gmail.com' , 'koko@gmail.com', 'minmin@gmail.com', 'kyawkyaw@gmail.com', 'zawzaw@gmail.com', 'linlin@gmail.com', 'wawa@gmail.com'];
+        $phone = ['09773457345','093643252435','09876283422', '09773457345','093643252435','09876283422','0978757647','0946257635'];
+        $education = ['graduate', 'M.B.B.S', 'B.Sc' ,'graduate', 'M.B.B.S', 'B.Sc','B.Sc'];
+        $job = ['driver','Doctor','English Teacher','driver','Doctor','English Teacher','vet'];
+        $CurAction = ['Attending Repair car class','Training Junior','Sport in School','Attending Repair car class','Training Junior','Sport in School','Tutor'];
+        $note = ['Power is Mind','Care is better than Treatment','Education is the light for life.','Power is Mind','Care is better than Treatment','Education is the light for life.','Work is the main for building the life'];
+        $address = ['Thanlyin','MDY','YGN','Thanlyin','MDY','YGN','MG'];
 
-        for ($i=0; $i < 3; $i++) {
+        for ($i=0; $i < 7; $i++) {
           $user = new App\User();
           $user->profile = $profile[$i];
           $user->name = $name[$i];
@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
         }
         /*End user table အတြက္*/
 
-    
+
 
         /*post_categories table အတြက္*/
         $post_category = new App\Model\ControlPanel\post_category();

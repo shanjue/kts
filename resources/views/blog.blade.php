@@ -1,7 +1,7 @@
 @extends('layouts/HomeApp')
+
 @section('style')
-<!-- Custom styles for this template -->
-<link href="{{asset('css/clean-blog.min.css')}}" rel="stylesheet">
+
 <style>
 .pagination
 {
@@ -29,56 +29,41 @@
 
 @section('content')
   <br>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link @if($categorystatus=='ShowAllPost') active @endif" href="{{url('blog')}}">All Post</a>
+    </li>
+    @foreach($categories as $category)
+    <li class="nav-item">
+      <a class="nav-link @if($categorystatus==$category->name) active  @endif" href="{{url('categoryfilter',$category->name)}}"  > {{$category->name}} <span class="badge badge-primary badge-pill">{{ count($category->post) }}</span></a>
+    </li>
+    @endforeach
+  </ul>
+  <br>
 
-  <div class="row clean-blog">
-    <div class="col-md-2 mx-auto">
-      <h2>Category</h2>
 
-      <!-- left menu box တည္ရွိရာ -->
-      <ul class="list-group">
-        <li  class="list-group-item d-flex justify-content-between align-items-center"><a href="{{url('blog')}}">All Post</a></li>
-        @foreach($categories as $category)
-
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-
-          <a href="{{url('categoryfilter',$category->name)}}" @if($categorystatus==$category->name)class="btn-warning"@endif>{{$category->name}}</a>
-          <span class="badge badge-primary badge-pill">{{ count($category->post) }}</span>
-        </li>
-        @endforeach
-      </ul>
-
-    </div>
-    <div class="col-lg-8 col-md-10 mx-auto">
+    <div class="row">
       @foreach($posts as $post)
-      <div class="post-preview">
-        <a href="{{ url('userpost/'. $post->id ) }}">
-          <h2 class="post-title">
-            {{ $post->whatabout }}
-          </h2>
-
-          <h3 class="post-subtitle">
-            {!! Str::words($post->content, 10) !!}
-          </h3>
-        </a>
-        <p class="post-meta">Posted by
-          <a href="#">{{ $post->user->name }}</a>
-          on {{$post->created_at->diffForHumans()}}
-          Categories-@foreach($post->category as $cat)<a href="{{url('/categoryfilter',$cat->name)}}" @if($categorystatus==$cat->name)class="btn-warning"@endif>({{ $cat->name  }})</a>@endforeach
-        </p>
-
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <img class="card-img-top" src="{{asset('image/homepage/700X400.jpg')}}" alt="">
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="{{url('viewpost/'.$post->id)}}">{{ $post->whatabout }}</a>
+            </h4>
+            <p class="card-text">{!! Str::words($post->content, 10) !!}</p>
+            <small>
+            Posted by
+              <a href="#">{{ $post->user->name }}</a>
+              on {{$post->created_at->diffForHumans()}}<br>
+              Categories-@foreach($post->category as $cat)({{ $cat->name  }})@endforeach</small>
+          </div>
         </div>
-        <hr>
-      @endforeach
-
-
-      <!-- Pager -->
-
-      <div class="">
-        {{ $posts->links() }}
       </div>
-      
-    </div>
-  </div>
+      @endforeach
+    </div><!--end row-->
+
+
 
 
 <hr>

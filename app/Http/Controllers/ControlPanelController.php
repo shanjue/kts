@@ -37,7 +37,7 @@ class ControlPanelController extends Controller
     {
       /*orderBy ထည့္ခ်င္ရင္ all function မထည့္ရပါ အလုိလိုယူပီးသားျဖစ္သည္*/
       /*with function ထဲမွာ array ပံုစံ ထည့္ေပးရမည္ category က တစ္ခုုတည္းမဟုတ္တဲ့ အတြက္ echo  လုပ္ခ်င္ရင္ foreach ပတ္ေပးရမည္ */
-      $posts = Post::where('user_id',Auth::user()->id)->with(['category'])->orderBy('id','desc')->paginate(1);
+      $posts = Post::where('user_id',Auth::user()->id)->with(['category'])->orderBy('id','desc')->paginate(5);
       return view('ControlPanel/post/showallposts',[
         'posts'=>$posts
       ]);
@@ -107,9 +107,6 @@ class ControlPanelController extends Controller
     }
     public function updategallery()
     {
-      $this->validate(Request(),[
-        'image'=>'required|image|max:2048|mimes:jpeg,png,jpg'
-      ]);
 
       if (Request()->photoid) {
         $uploadphoto = Uploadphoto::find(Request()->photoid);
@@ -119,6 +116,9 @@ class ControlPanelController extends Controller
         return back()->with('message','Update Successful Place = ( '.Request()->place.' ) And '.'Note = ( ' .Request()->note .' ).');
       }
       if (Request()->image) {
+        $this->validate(Request(),[
+          'image'=>'required|image|max:2048|mimes:jpeg,png,jpg'
+        ]);
         $foldername = Auth::user()->created_at->toDateString() . Auth::user()->id;
         Storage::makeDirectory("public/$foldername");
 
@@ -131,7 +131,7 @@ class ControlPanelController extends Controller
         $uploadphoto->save();
         return back()->with('message','successful Upload Image');
       }
-      
+
     }
     public function delgallery($id)
     {

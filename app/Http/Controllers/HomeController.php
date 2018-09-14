@@ -19,11 +19,11 @@ class HomeController extends Controller
     public function blog()
     {
       $categories = Category::all();
-      $posts = Post::where('publish',1)->with(['category'])->paginate(2);
+      $posts = Post::where('publish',1)->with(['category'])->paginate(10);
       return view('blog',[
         'posts'=>$posts,
         'categories'=>$categories,
-        'categorystatus'=>'blog'
+        'categorystatus'=>'ShowAllPost'
       ]);
     }
     public function post($id)
@@ -36,7 +36,7 @@ class HomeController extends Controller
     public function categoryfilter(Category $category)
     {
       $categories = Category::all();
-      $posts = $category->post()->paginate(1);
+      $posts = $category->post()->paginate(10);
       return view('blog',[
         'posts'=>$posts,
         'categories'=>$categories,
