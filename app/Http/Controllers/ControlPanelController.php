@@ -25,14 +25,6 @@ class ControlPanelController extends Controller
     }
 
     /*Post  ဆိုင္ရာ*/
-    public function viewpost($id)
-    {
-      $post = Post::find($id);
-      return view('ControlPanel/post/viewpost',[
-        'post'=>$post,
-        'categorystatus'=>'blog'
-      ]);
-    }
     public function showallposts()
     {
       /*orderBy ထည့္ခ်င္ရင္ all function မထည့္ရပါ အလုိလိုယူပီးသားျဖစ္သည္*/
@@ -58,13 +50,14 @@ class ControlPanelController extends Controller
         'content'=>'required',
       ]);
       $post = new Post();
+      $post->titlephoto = Request()->titlephoto;
       $post->whatabout = Request()->whatabout;
       $post->content = Request()->content;
       $post->publish = Request()->publish;
       $post->user_id = Auth::user()->id;
       $post->save();
       $post->category()->sync(Request()->categories);
-      return redirect('/post/showallposts');
+      return redirect('/blog');
     }
 
 

@@ -24,6 +24,10 @@
       background: lightblue;
 }
 
+.h-100:hover
+{
+  border:2px solid green;
+}
 </style>
 @endsection
 
@@ -44,22 +48,24 @@
 
     <div class="row">
       @foreach($posts as $post)
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <img class="card-img-top" src="{{asset('image/homepage/700X400.jpg')}}" alt="">
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="{{url('viewpost/'.$post->id)}}">{{ $post->whatabout }}</a>
-            </h4>
-            <p class="card-text">{!! Str::words($post->content, 10) !!}</p>
-            <small>
-            Posted by
-              <a href="#">{{ $post->user->name }}</a>
-              on {{$post->created_at->diffForHumans()}}<br>
-              Categories-@foreach($post->category as $cat)({{ $cat->name  }})@endforeach</small>
+
+        <div class="col-lg-4 col-sm-6 portfolio-item" data-toggle="tooltip" data-html="true" title="<i class='fas fa-user-tie'></i> {{ $post->user->name }}  <br> <i class='fas fa-clock'></i> {{$post->created_at->diffForHumans()}}<br>
+                        @foreach($post->category as $cat)({{ $cat->name  }})@endforeach">
+          <div class="card h-100">
+            <a href="{{url('viewpost/'.$post->id)}}">
+              <img class="card-img-top" src="{{$post->titlephoto }}" height="210px" alt="">
+            </a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="{{url('viewpost/'.$post->id)}}">{{ $post->whatabout }}</a>
+              </h4>
+              <p class="card-text">{!! Str::words($post->content, 20) !!}<a href="{{url('viewpost/'.$post->id)}}">Read More</a></p>
+
+
+            </div>
           </div>
-        </div>
       </div>
+
       @endforeach
     </div><!--end row-->
 
@@ -70,4 +76,19 @@
 
 
 
+@endsection
+@section('script')
+<script>
+$(document).ready(function(){
+  // paragraph ထဲက ပံုကို display none လုပ္ထားသည္
+  $(function(){
+    $('.card-body img').attr('style','display:none');
+  });
+
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+  });
+
+});
+</script>
 @endsection

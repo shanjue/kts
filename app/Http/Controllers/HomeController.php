@@ -19,24 +19,26 @@ class HomeController extends Controller
     public function blog()
     {
       $categories = Category::all();
-      $posts = Post::where('publish',1)->with(['category'])->paginate(10);
+      $posts = Post::where('publish',1)->with(['category'])->orderBy('id','desc')->paginate(10);
       return view('blog',[
         'posts'=>$posts,
         'categories'=>$categories,
         'categorystatus'=>'ShowAllPost'
       ]);
     }
-    public function post($id)
+
+    public function viewpost($id)
     {
       $post = Post::find($id);
       return view('post',[
-        'post'=>$post
+        'post'=>$post,
+        'categorystatus'=>'blog'
       ]);
     }
     public function categoryfilter(Category $category)
     {
       $categories = Category::all();
-      $posts = $category->post()->paginate(10);
+      $posts = $category->post()->orderBy('id','desc')->paginate(10);
       return view('blog',[
         'posts'=>$posts,
         'categories'=>$categories,

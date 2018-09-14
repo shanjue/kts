@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('https://localhost/kts/public/image/cleanblog/post-bg.jpg')">
+<header class="masthead" style="background-image: url({{$post->titlephoto}})">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">

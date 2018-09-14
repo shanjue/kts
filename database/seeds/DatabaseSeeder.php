@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         /*post table အတြက္*/
         for ($i=0; $i < 7; $i++) {
           $post = new App\Model\ControlPanel\Post();
+          $post->titlephoto = "title-photo.jpg";
           $post->whatabout = $faker->sentence();
           $post->content = $faker->paragraph();
           $post->user_id = $i+1;

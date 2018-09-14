@@ -5,7 +5,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cpanel','HomeController@cpanel');
 Route::get('/blog','HomeController@blog');
-Route::get('/userpost/{id}','HomeController@post');
+Route::get('/viewpost/{id}','HomeController@viewpost');
 Route::get('/categoryfilter/{category}','HomeController@categoryfilter');
 Route::get('/allusers','HomeController@allusers');
 Route::get('/gallery','HomeController@gallery');
@@ -15,7 +15,6 @@ Route::get('/moregallery/{id}','HomeController@moregallery');
 /*post ဆုိင္ရာ*/
 Route::get('/addpost','ControlPanelController@addpost');
 Route::post('addpost','ControlPanelController@submitpost')->name('addpost');
-Route::get('/viewpost/{id}','ControlPanelController@viewpost');
 Route::get('/post/showallposts','ControlPanelController@showallposts');
 /*End post ဆုိင္ရာ*/
 

@@ -7,7 +7,12 @@
 <link href="{{asset('Avilon/lib/magnific-popup/magnific-popup.css')}}" rel="stylesheet">
 <!-- Main Stylesheet File -->
 <link href="{{asset('Avilon/css/style.css')}}" rel="stylesheet">
-
+<style media="screen">
+  #gallery-Box
+  {
+      margin-top:5px;
+  }
+</style>
 @endsection
 
 @section('content')
@@ -49,7 +54,7 @@
           <br>
           <div class="box box-danger alert alert-success">
             <div class="box-header with-border">
-              <h4 class=" text-center"><b>Create Post</b></h4>
+              <h4 class=" text-center"><b><i class="fas fa-newspaper"></i> Create Post</b></h4>
             </div>
 
             <div class="box-body">
@@ -62,8 +67,8 @@
                 <div class="form-group row " id="choose-title-photo-box">
 
                     @foreach($user->uploadphoto as $uploadphoto)
-                    <div class="col-xs-6 col-md-2 " id="div-of-input" >
-                      <input type="checkbox" name="title-photo"   value="{{$uploadphoto->name}}" style="margin-left:3.5em;">
+                    <div class="col-xs-6 col-md-2 "  >
+                      <input type="checkbox" name="titlephoto"   value="{{$_ENV['APP_URL']}}/storage/{{Auth::user()->created_at->toDateString()}}{{Auth::user()->id}}/{{$uploadphoto->name}}" style="margin-left:3.5em;">
                       <div class="gallery-item wow fadeInUp">
                         <a href='{{asset("storage/".Auth::user()->created_at->toDateString().Auth::user()->id."/origin"."$uploadphoto->name")}}' class="gallery-popup">
                           <img src='{{asset("storage/".Auth::user()->created_at->toDateString().Auth::user()->id."/$uploadphoto->name")}}' alt="" class="img-thumbnail rounded float-left" style="width:120px;">
@@ -75,30 +80,27 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="whatabout">Title </label>
+                  <label for="whatabout"><i class="fas fa-pen-nib"></i> Title </label>
                   <textarea name="whatabout"  class="form-control">Just Two Lines</textarea>
                 </div>
 
-              <div class="form-group row">
+              <a class="btn btn-primary" id="show-gallery-buttom">Show Gallery Box</a>
 
+              <div class="form-group row " id="gallery-box">
                   @foreach($user->uploadphoto as $uploadphoto)
-
                   <div id="choosephoto-{{$uploadphoto->id}} " class="col-xs-6 col-md-2" data-toggle="tooltip" title="Click on photo">
                     <input type="hidden" id="image_id" value="{{$uploadphoto->id}}">
                     <a href="#myModal-{{$uploadphoto->id}}" data-toggle="modal">
                       <img src='{{asset("storage/".Auth::user()->created_at->toDateString().Auth::user()->id."/$uploadphoto->name")}}' alt=""  width="130px" height="130px" style="border-radius:5px;margin-bottom:5px;">
                     </a>
                   </div>
-
-
                   @endforeach
-
               </div>
 
             </div>
 
 
-              <label for="content">Edit and Write Article </label>
+              <label for="content"><i class="fas fa-edit"></i> Edit and <i class="fas fa-pencil-alt"></i> Write Article </label>
               <textarea name="content" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
 
 
@@ -145,10 +147,15 @@
 
     $(function(){
       $('#choose-title-photo-box').hide();
+      $('#gallery-box').hide();
     });
 
     $('#choose-title-photo-bottom').click(function(){
-      $('#choose-title-photo-box').show('slow');
+      $('#choose-title-photo-box').slideToggle('slow');
+    });
+
+    $('#show-gallery-buttom').click(function(){
+      $('#gallery-box').slideToggle('slow');
     });
 
     $(document).on('click', 'input[name="title-photo"]', function() {
