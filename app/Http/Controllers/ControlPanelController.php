@@ -38,7 +38,8 @@ class ControlPanelController extends Controller
     {
       $posts =Post::where('user_id',$id)->with(['category'])->orderBy('id','desc')->paginate(20);
       return view('mypost',[
-        'posts'=>$posts
+        'posts'=>$posts,
+        'homenav'=>'mypost'
       ]);
     }
     public function addpost()
@@ -47,7 +48,8 @@ class ControlPanelController extends Controller
       $user = User::where('name',Auth::user()->name)->first();
       return view('ControlPanel/post/addpost',[
         'categories' => $categories,
-        'user' => $user
+        'user' => $user,
+        'homenav'=>'createpost'
       ]);
     }
     public function submitpost()
@@ -94,7 +96,8 @@ class ControlPanelController extends Controller
       return view('editpost',[
         'post'=>$post,
         'user'=>$user,
-        'categories'=>$categories
+        'categories'=>$categories,
+        'homenav'=>'mypost'
       ]);
     }
 
@@ -106,7 +109,8 @@ class ControlPanelController extends Controller
     {
       $user = User::find($id);
       return view('ControlPanel/yourgallery/yourgallery',[
-        'user'=>$user
+        'user'=>$user,
+        'homenav'=>'mygallery'
       ]);
     }
     public function yourgallerysubmit($id)
@@ -132,7 +136,8 @@ class ControlPanelController extends Controller
     {
       $user = User::find($id);
       return view('ControlPanel/yourgallery/editgallery',[
-        'user'=>$user
+        'user'=>$user,
+        'homenav'=>'mygallery'
       ]);
     }
     public function updategallery()

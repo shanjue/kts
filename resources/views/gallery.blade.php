@@ -48,13 +48,14 @@
 <body>
 
 @include('include/homenav')
-
+<br>
   <main id="main">
 
     <!--==========================
       Gallery Section
     ============================-->
     @foreach($users as $user)
+    @if(count($user->uploadphoto) > 0)<!--ပံု မတင္ထားေသာ user မ်ားကို ေဖ်ာက္ထားသည္-->
     <section id="gallery">
       <div class="container">
         <div class="section-header">
@@ -97,7 +98,7 @@
 
       </div>
     </section><!-- #gallery -->
-
+    @endif
     @endforeach
   </main>
 

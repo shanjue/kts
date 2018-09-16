@@ -14,7 +14,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        return view('home',[
+          'homenav'=>'slash'
+        ]);
     }
     public function blog()
     {
@@ -23,7 +25,8 @@ class HomeController extends Controller
       return view('blog',[
         'posts'=>$posts,
         'categories'=>$categories,
-        'categorystatus'=>'ShowAllPost'
+        'categorystatus'=>'ShowAllPost',
+        'homenav'=>'newposts'
       ]);
     }
 
@@ -32,7 +35,8 @@ class HomeController extends Controller
       $post = Post::find($id);
       return view('post',[
         'post'=>$post,
-        'categorystatus'=>'blog'
+        'categorystatus'=>'blog',
+        'homenav'=>'mypost'
       ]);
     }
     public function categoryfilter(Category $category)
@@ -42,7 +46,8 @@ class HomeController extends Controller
       return view('blog',[
         'posts'=>$posts,
         'categories'=>$categories,
-        'categorystatus'=>$category->name
+        'categorystatus'=>$category->name,
+        'homenav'=>'newposts'
       ]);
     }
     public function cpanel()
@@ -60,7 +65,8 @@ class HomeController extends Controller
     {
       $users = User::all();
       return view('gallery',[
-        'users'=>$users
+        'users'=>$users,
+        'homenav'=>'gallery'
       ]);
     }
     public function moregallery($id)

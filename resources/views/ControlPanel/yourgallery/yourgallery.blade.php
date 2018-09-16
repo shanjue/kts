@@ -54,10 +54,10 @@
             <form method="post" enctype="multipart/form-data">
               {{csrf_field() }}
               <input type="file" name="image" class="float-left">
-              <input type="submit" value="Upload Image " class="btn btn-outline-success float-left">
+              <input type="submit" value=" Upload Image " class="btn btn-outline-success float-left">
             </form>
-            <a href="{{url('/editgallery/'.$user->id)}}" class="btn btn-outline-danger" style="margin-left:5px;">Edit or Delete</a>
-            <a href="{{url('/home')}}" class="btn btn-outline-primary">Back</a><br>
+            <a href="{{url('/editgallery/'.$user->id)}}" class="btn btn-outline-danger" style="margin-left:5px;"><i class="fas fa-edit"></i>  or <i class="fas fa-trash-alt"></i> </a>
+            <a href="{{url('/home')}}" class="btn btn-outline-primary"><i class="fas fa-chevron-left"></i> Back</a><br>
             <div class="row">
               <div class="col-md-4" >
                 <div class="gallery-item wow fadeInUp">

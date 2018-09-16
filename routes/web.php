@@ -43,6 +43,3 @@ Route::get('/cat','ControlPanelController@cat');
 /*--XHR*/ Route::post('/catupdate','ControlPanelController@catupdate');
 
 Auth::routes();
-/*Start User image ႏွင့္သက္ဆုိင္ရာ*/
-
-/*End User image ႏွင့္သက္ဆုိင္ရာ*/

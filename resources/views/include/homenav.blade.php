@@ -1,4 +1,9 @@
 <style >
+ .orange
+ {
+   color:orange;
+
+ }
   i:hover
   {
     color: orange;
@@ -7,7 +12,7 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     @if(Request::is('/'))
-    <a class="navbar-brand" href="{{url('/')}}">Kutholshin</a>
+    <a class="navbar-brand  " @if($homenav == 'slash') style="color:orange;" @endif href="{{url('/')}}">Kutholshin</a>
     @else
     <a class="navbar-brand" style="margin:0;padding:0;" href="{{url('/')}}"><i class="fas fa-home" style="font-size:2em;"></i></a>
     @endif
@@ -17,10 +22,10 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{{url('/blog')}}"><i class="fa fa-newspaper"></i> New Posts</a>
+          <a class="nav-link @if($homenav == 'newposts') active @endif" href="{{url('/blog')}}"><i class="fa fa-newspaper @if($homenav == 'newposts') orange @endif"></i> New Posts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url('/gallery')}}"><i class="fas fa-images"></i> Gallery</a>
+          <a class="nav-link @if($homenav == 'gallery') active @endif" href="{{url('/gallery')}}"><i class="fas fa-images @if($homenav == 'gallery') orange @endif"></i> Gallery</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="about.html"><i class="fas fa-font"></i> About</a>
@@ -44,17 +49,17 @@
           <a class="nav-link" href="{{url('/login')}}"><i class="fas fa-sign-in-alt"></i> Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url('/register')}}"><i class="fas fa-user-plus"></i> Register</a>
+          <a class="nav-link @if($homenav == 'register') active @endif" href="{{url('/register')}}"><i class="fas fa-user-plus @if($homenav == 'register') orange @endif"></i> Register</a>
         </li>
         @else
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user"></i> {{ Auth::user()->name}}
+          <a class="nav-link dropdown-toggle @if($homenav == 'mygallery' || $homenav == 'createpost' || $homenav == 'mypost') active  @endif" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user @if($homenav == 'mygallery' || $homenav == 'createpost' || $homenav == 'mypost') orange @endif"></i> {{ Auth::user()->name}}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-            <a class="dropdown-item" href="{{url('/yourgallery/'.Auth::user()->id)}}"><i class="fas fa-images"></i> My Gallery</a>
-            <a class="dropdown-item" href="{{url('/addpost')}}"><i class="fa fa-newspaper"></i> Create Post</a>
-            <a class="dropdown-item" href="{{url('/mypost/'.Auth::user()->id)}}"><i class="fa fa-newspaper"></i> My Post</a>
+            <a class="dropdown-item @if($homenav == 'mygallery') active @endif" href="{{url('/yourgallery/'.Auth::user()->id)}}"><i class="fas fa-images @if($homenav == 'mygallery') orange @endif"></i> My Gallery</a>
+            <a class="dropdown-item @if($homenav == 'createpost') active @endif" href="{{url('/addpost')}}"><i class="fa fa-newspaper @if($homenav == 'createpost') orange @endif"></i> Create Post</a>
+            <a class="dropdown-item @if($homenav == 'mypost') active @endif" href="{{url('/mypost/'.Auth::user()->id)}}"><i class="fa fa-newspaper @if($homenav == 'mypost') orange @endif"></i> My Post</a>
             <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
