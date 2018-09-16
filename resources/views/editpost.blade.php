@@ -1,3 +1,4 @@
+
 @extends('layouts/HomeApp')
 
 @section('style')
@@ -54,21 +55,28 @@
           <br>
           <div class="box box-danger alert alert-success">
             <div class="box-header with-border">
-              <h4 class=" text-center"><b><i class="fas fa-newspaper"></i> Create Post</b></h4>
+              <h4 class=" text-center"><b><i class="fas fa-newspaper"></i> Create Post</b> <a href="{{url()->previous()}}" class="btn btn-warning" style="text-decoration:none;">Back</a></h4>
             </div>
 
             <div class="box-body">
               <!--Start whatabout content  တင္ျခင္း -->
-              <form role="form" action="{{route('addpost')}}" method="post">
+              <form role="form" method="post">
                 {{csrf_field()}}
                 <!-- Start Choose title photo -->
                 <a  id="choose-title-photo-bottom" class="btn btn-info" style="text-decoration:none;" ><i class="fas fa-images"></i> Choose Title Photo</a>
 
                 <div class="form-group row " id="choose-title-photo-box">
+                  <?php
+                    $url =$post->titlephoto;
+                    $values = parse_url($url);
+                    // print_r($values);
+                    $host = explode('/',$values['path']);
+                    // echo $host[3];
+                   ?>
 
                     @foreach($user->uploadphoto as $uploadphoto)
                     <div class="col-xs-6 col-md-2 "  >
-                      <input type="checkbox" name="titlephoto"   value="{{$_ENV['APP_URL']}}/storage/{{Auth::user()->created_at->toDateString()}}{{Auth::user()->id}}/{{$uploadphoto->name}}" style="margin-left:3.5em;">
+                      <input type="checkbox" name="titlephoto"   value="{{$_ENV['APP_URL']}}/storage/{{Auth::user()->created_at->toDateString()}}{{Auth::user()->id}}/{{$uploadphoto->name}}" @if( $uploadphoto->name == $host[3]) checked="checked" @endif style="margin-left:3.5em;" >
                       <div class="gallery-item wow fadeInUp">
                         <a href='{{asset("storage/".Auth::user()->created_at->toDateString().Auth::user()->id."/origin"."$uploadphoto->name")}}' class="gallery-popup">
                           <img src='{{asset("storage/".Auth::user()->created_at->toDateString().Auth::user()->id."/$uploadphoto->name")}}' alt="" class="img-thumbnail rounded float-left" style="width:120px;">
@@ -81,7 +89,7 @@
 
                 <div class="form-group">
                   <label for="whatabout"><i class="fas fa-pen-nib"></i> Title </label>
-                  <textarea name="whatabout"  class="form-control">Just Two Lines</textarea>
+                  <textarea name="whatabout"  class="form-control">{{$post->whatabout}}</textarea>
                 </div>
 
               <a class="btn btn-primary" id="show-gallery-buttom">Show Gallery Box</a>
@@ -101,27 +109,28 @@
 
 
               <label for="content"><i class="fas fa-edit"></i> Edit and <i class="fas fa-pencil-alt"></i> Write Article </label>
-              <textarea name="content" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
+              <textarea name="content" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1">{{$post->content}}</textarea>
 
 
             <div class="form-group" style="margin-top:18px;">
+
               <label>Select Category</label>
               <select name="categories[]" class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" >
               @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <option value="{{ $category->id }}"  @foreach($post->category as $postcat) @if($postcat->name == $category->name) selected="selected" @endif @endforeach >{{ $category->name }}</option>
               @endforeach
               </select>
             </div>
 
             <div class="checkbox" style="margin:0 5px;">
               <label>
-                <input type="checkbox" name="publish" value="1"> Ready To Publish(Status)
+                <input type="checkbox" name="publish" value="1" @if($post->publish == 1) checked @endif> Ready To Publish(Status)
               </label>
             </div>
 
               <button type="submit" class="btn btn-success upload-result"><i class="fas fa-check-circle" style="color:white;"></i> Create Now</button>
-
-          </formwhite
+              <a href="{{url()->previous()}}" class="btn btn-warning" style="text-decoration:none;">Back</a>
+          </form>
         </div>
 
 

@@ -1,8 +1,12 @@
-@extends('layouts/BlogApp')
-@section('back')
-  <a class="navbar-brand" href="{{url('blog')}}">Back</a>
+@extends('layouts/HomeApp')
+
+@section('style')
+<!-- Custom styles for this template -->
+<link href="{{asset('css/clean-blog.min.css')}}" rel="stylesheet">
 @endsection
-@section('content')
+
+
+@section('content-for-viewpost-blade')
 <!-- Page Header -->
 <header class="masthead" style="background-image: url({{$post->titlephoto}})">
   <div class="overlay"></div>
@@ -27,11 +31,13 @@
 
     <div class="col-lg-8 col-md-10 mx-auto">
       {!! htmlspecialchars_decode($post->content) !!}
-      <div class="alert alert-default text-center">
-        <a href="{{url('blog')}}" class="btn btn-primary">Back</a>
-        Category of @foreach($post->category as $cats) <a href="{{url('categoryfilter',$cats->name)}}" >({{$cats->name}}) </a> @endforeach
-      </div>
     </div>
+
+
+  </div>
+  <div class="alert alert-default text-center">
+    <a href="{{url('blog')}}" class="btn btn-primary">Back</a>
+    Category of @foreach($post->category as $cats) <a href="{{url('categoryfilter',$cats->name)}}" >({{$cats->name}}) </a> @endforeach
   </div>
 </article>
 

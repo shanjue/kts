@@ -29,24 +29,19 @@
   border:4px solid lightblue;
   border-radius: 10px;
 }
+.card-Footer:hover
+{
+      background: lightblue;
+}
 </style>
 @endsection
 
 @section('content')
-  <br>
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link @if($categorystatus=='ShowAllPost') active @endif" href="{{url('blog')}}">All Post</a>
-    </li>
-    @foreach($categories as $category)
-    <li class="nav-item">
-      <a class="nav-link @if($categorystatus==$category->name) active  @endif" href="{{url('categoryfilter',$category->name)}}"  > {{$category->name}} <span class="badge badge-primary badge-pill">{{ count($category->post) }}</span></a>
-    </li>
-    @endforeach
-  </ul>
-  <br>
 
 
+<br>
+<h2 class="text-center " ><i class="fa fa-newspaper"></i> My Posts </h2>
+<br>
     <div class="row">
       @foreach($posts as $post)
 
@@ -58,14 +53,28 @@
             </a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="{{url('viewpost/'.$post->id)}}">{{ $post->whatabout }}</a>
+                <a href="{{url('viewpost/'.$post->id)}}">{{ $post->whatabout }} </a>
               </h4>
-              <p class="card-text">{!! Str::words($post->content, 20) !!}<a href="{{url('viewpost/'.$post->id)}}">Read More</a></p>
-
+              <!-- <p class="card-text">{!! Str::words($post->content, 20) !!}<a href="{{url('viewpost/'.$post->id)}}">Read More</a> </p> -->
 
             </div>
+            <a href="{{url('/viewpost/'.$post->id)}}">
+              <div class="text-center card-footer">
+                <i class="fas fa-eye" style="font-size:2em;"></i>view
+              </div>
+            </a>
+            <a href="{{url('/editpost/'.$post->id)}}">
+              <div class="text-center card-footer">
+                <i class="fas fa-edit" style="font-size:2em;"></i>edit
+              </div>
+            </a>
           </div>
+
       </div>
+
+
+
+
 
       @endforeach
     </div><!--end row-->

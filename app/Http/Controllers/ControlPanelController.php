@@ -34,6 +34,13 @@ class ControlPanelController extends Controller
         'posts'=>$posts
       ]);
     }
+    public function mypost($id)
+    {
+      $posts =Post::where('user_id',$id)->with(['category'])->orderBy('id','desc')->paginate(20);
+      return view('mypost',[
+        'posts'=>$posts
+      ]);
+    }
     public function addpost()
     {
       $categories = Category::all();
@@ -46,6 +53,7 @@ class ControlPanelController extends Controller
     public function submitpost()
     {
       $this->validate(Request(),[
+        'titlephoto'=>'required',
         'whatabout'=>'required',
         'content'=>'required',
       ]);
@@ -59,7 +67,36 @@ class ControlPanelController extends Controller
       $post->category()->sync(Request()->categories);
       return redirect('/blog');
     }
+    public function submiteditpost($id)
+    {
+      $this->validate(Request(),[
+        'titlephoto'=>'required',
+        'whatabout'=>'required',
+        'content'=>'required',
+      ]);
+      $post = Post::find($id);
+      $post->titlephoto = Request()->titlephoto;
+      $post->whatabout = Request()->whatabout;
+      $post->content = Request()->content;
+      $post->publish = Request()->publish;
+      $post->user_id = Auth::user()->id;
+      $post->save();
+      $post->category()->sync(Request()->categories);
+      return redirect('/mypost'.'/'.Auth::user()->id);
 
+    }
+    public function editpost($id)
+    {
+      $post = Post::where('id',$id)->with(['category'])->first();
+
+      $user  = User::where('name',Auth::user()->name)->first();
+      $categories =Category::all();
+      return view('editpost',[
+        'post'=>$post,
+        'user'=>$user,
+        'categories'=>$categories
+      ]);
+    }
 
 
     /*End Post ဆုိင္ရာ*/

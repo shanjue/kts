@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title>Kutholshin </title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
@@ -13,6 +13,12 @@
 
     <!-- Custom styles for this template -->
     <link href="{{asset('css/modern-business.css')}}" rel="stylesheet">
+    <style >
+      i:hover
+      {
+        color: orange;
+      }
+    </style>
     @section('style')
       @show
   </head>

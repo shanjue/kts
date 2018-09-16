@@ -1,3 +1,9 @@
+<style >
+  i:hover
+  {
+    color: orange;
+  }
+</style>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     @if(Request::is('/'))
@@ -47,7 +53,8 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
             <a class="dropdown-item" href="{{url('/yourgallery/'.Auth::user()->id)}}"><i class="fas fa-images"></i> My Gallery</a>
-            <a class="dropdown-item" href="{{url('/addpost')}}"><i class="fas fa-images"></i> Create Post</a>
+            <a class="dropdown-item" href="{{url('/addpost')}}"><i class="fa fa-newspaper"></i> Create Post</a>
+            <a class="dropdown-item" href="{{url('/mypost/'.Auth::user()->id)}}"><i class="fa fa-newspaper"></i> My Post</a>
             <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">

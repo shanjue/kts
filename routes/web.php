@@ -2,7 +2,6 @@
 
 /*home ႏွင့္သက္ဆိုင္ရာမ်ား*/
 Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cpanel','HomeController@cpanel');
 Route::get('/blog','HomeController@blog');
 Route::get('/viewpost/{id}','HomeController@viewpost');
@@ -15,7 +14,9 @@ Route::get('/moregallery/{id}','HomeController@moregallery');
 /*post ဆုိင္ရာ*/
 Route::get('/addpost','ControlPanelController@addpost');
 Route::post('addpost','ControlPanelController@submitpost')->name('addpost');
-Route::get('/post/showallposts','ControlPanelController@showallposts');
+Route::get('/editpost/{id}','ControlPanelController@editpost');
+Route::post('/editpost/{id}','ControlPanelController@submiteditpost');
+Route::get('/mypost/{id}','ControlPanelController@mypost');
 /*End post ဆုိင္ရာ*/
 
 /*gallery ဆုိင္ရာ*/
