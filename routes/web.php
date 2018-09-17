@@ -16,7 +16,7 @@ Route::get('/addpost','ControlPanelController@addpost');
 Route::post('addpost','ControlPanelController@submitpost')->name('addpost');
 Route::get('/editpost/{id}','ControlPanelController@editpost');
 Route::post('/editpost/{id}','ControlPanelController@submiteditpost');
-Route::get('/mypost','ControlPanelController@mypost');
+Route::get('/mypost/{id}','ControlPanelController@mypost');
 /*End post ဆုိင္ရာ*/
 
 /*postlike ဆုိင္ရာ*/
