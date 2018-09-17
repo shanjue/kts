@@ -73,7 +73,8 @@ class HomeController extends Controller
     {
       $user = User::find($id);
       return view('moregallery',[
-        'user'=>$user
+        'user'=>$user,
+        'homenav'=>'moregallery'
       ]);
     }
 }

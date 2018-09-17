@@ -25,7 +25,7 @@
           <a class="nav-link @if($homenav == 'newposts') active @endif" href="{{url('/blog')}}"><i class="fa fa-newspaper @if($homenav == 'newposts') orange @endif"></i> New Posts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link @if($homenav == 'gallery') active @endif" href="{{url('/gallery')}}"><i class="fas fa-images @if($homenav == 'gallery') orange @endif"></i> Gallery</a>
+          <a class="nav-link @if($homenav == 'gallery' || $homenav == 'moregallery') active @endif" href="{{url('/gallery')}}"><i class="fas fa-images @if($homenav == 'gallery' || $homenav == 'moregallery') orange @endif"></i> Gallery</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="about.html"><i class="fas fa-font"></i> About</a>

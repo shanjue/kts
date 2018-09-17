@@ -58,16 +58,13 @@
               <!-- <p class="card-text">{!! Str::words($post->content, 20) !!}<a href="{{url('viewpost/'.$post->id)}}">Read More</a> </p> -->
 
             </div>
-            <a href="{{url('/viewpost/'.$post->id)}}">
+
               <div class="text-center card-footer">
-                <i class="fas fa-eye" style="font-size:2em;"></i>view
+                <a href="{{url('/viewpost/'.$post->id)}}"><i class="fas fa-eye" style="font-size:2em;"></i>view</a>
+                <a href="{{url('/editpost/'.$post->id)}}"><i class="fas fa-edit" style="font-size:2em;"></i>edit</a>
               </div>
-            </a>
-            <a href="{{url('/editpost/'.$post->id)}}">
-              <div class="text-center card-footer">
-                <i class="fas fa-edit" style="font-size:2em;"></i>edit
-              </div>
-            </a>
+
+            
           </div>
 
       </div>

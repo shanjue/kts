@@ -29,6 +29,10 @@
   border:4px solid lightblue;
   border-radius: 10px;
 }
+.card-Footer:hover
+{
+      background: lightblue;
+}
 </style>
 @endsection
 
@@ -60,10 +64,16 @@
               <h4 class="card-title">
                 <a href="{{url('viewpost/'.$post->id)}}">{{ $post->whatabout }}</a>
               </h4>
-              <p class="card-text">{!! Str::words($post->content, 20) !!}<a href="{{url('viewpost/'.$post->id)}}">Read More</a></p>
+              <!-- <p class="card-text">{!! Str::words($post->content, 20) !!}<a href="{{url('viewpost/'.$post->id)}}">Read More</a></p> -->
 
 
             </div>
+
+              <div class="text-center card-footer">
+                <a href="{{url('/viewpost/'.$post->id)}}"><i class="fas fa-eye" style="font-size:2em;"></i>view</a>
+                
+              </div>
+
           </div>
       </div>
 

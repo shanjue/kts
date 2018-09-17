@@ -16,8 +16,12 @@ Route::get('/addpost','ControlPanelController@addpost');
 Route::post('addpost','ControlPanelController@submitpost')->name('addpost');
 Route::get('/editpost/{id}','ControlPanelController@editpost');
 Route::post('/editpost/{id}','ControlPanelController@submiteditpost');
-Route::get('/mypost/{id}','ControlPanelController@mypost');
+Route::get('/mypost','ControlPanelController@mypost');
 /*End post ဆုိင္ရာ*/
+
+/*postlike ဆုိင္ရာ*/
+Route::post('/postlike/{id}','PostlikeController@postlike')->name('postlike');
+/*End postlike ဆုိင္ရာ*/
 
 /*gallery ဆုိင္ရာ*/
 

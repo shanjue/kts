@@ -26,13 +26,13 @@
 <style >
   .total
   {
-      background: lightgray;
+      opacity: 0.5;
       border-radius: 60px;
-      padding-top: 40px;
+
   }
   .total:hover
   {
-    background: gray;
+    opacity: 0.7;
     border-radius: 50px;
 
   }
@@ -85,12 +85,15 @@
 
           @endforeach
           <!-- ေနာက္ဆံုးလုိခ်င္ေသာ count number အကြက္ကို foreach အျပင္မွာထားရသည္။ -->
+
           @if($count == 5)
-          <div class="col-lg-4 col-md-6 gallery-item wow fadeInUp total">
-              <a href="{{url('/moregallery/'.$user->id)}}"  style="font-size:200px;">
-                +{{$total}}
-              </a>
-              <h5>More</h5>
+
+          <div class="col-lg-4 col-md-6 gallery-item wow fadeInUp total" style="background-image:url({{asset('storage/'.$user->created_at->toDateString().$user->id.'/origin'.$photo->name)}}); background-position:0 0;">
+
+            <a href="{{url('/moregallery/'.$user->id)}}"  style="font-size:200px;">
+              +{{$total}}
+            </a>
+            <h5>More</h5>
           </div>
           @endif
 
