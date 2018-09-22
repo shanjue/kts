@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostCategoriesTable extends Migration
+class CreateCommentofpostPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreatePostCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_categories', function (Blueprint $table) {
+        Schema::create('commentofpost_posts', function (Blueprint $table) {
+            $table->integer('commentofpost_id')->unsigned()->index();
             $table->integer('post_id')->unsigned()->index();
-            $table->integer('category_id')->unsigned()->index();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('Cascade');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreatePostCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_categories');
+        Schema::dropIfExists('comment_posts');
     }
 }

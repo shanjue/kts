@@ -7,6 +7,8 @@ use App\Model\ControlPanel\Post;
 use App\Model\ControlPanel\Category;
 use Illuminate\Support\Facades\Storage;
 use App\User;
+use App\Model\ControlPanel\user_post;
+use App\Model\ControlPanel\commentofpost_post;
 
 class HomeController extends Controller
 {
@@ -21,11 +23,15 @@ class HomeController extends Controller
     public function blog()
     {
       $categories = Category::all();
+      $user_posts = user_post::all();
+      $commentofpost_posts =commentofpost_post::all();
       $posts = Post::where('publish',1)->with(['category'])->orderBy('id','desc')->paginate(10);
       return view('blog',[
         'posts'=>$posts,
         'categories'=>$categories,
         'categorystatus'=>'ShowAllPost',
+        'user_posts'=>$user_posts,
+        'commentofposts' => $commentofpost_posts,
         'homenav'=>'newposts'
       ]);
     }
@@ -42,11 +48,13 @@ class HomeController extends Controller
     public function categoryfilter(Category $category)
     {
       $categories = Category::all();
+      $user_posts = user_post::all();
       $posts = $category->post()->orderBy('id','desc')->paginate(10);
       return view('blog',[
         'posts'=>$posts,
         'categories'=>$categories,
         'categorystatus'=>$category->name,
+        'user_posts'=>$user_posts,
         'homenav'=>'newposts'
       ]);
     }

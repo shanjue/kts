@@ -20,7 +20,10 @@ Route::get('/mypost/{id}','ControlPanelController@mypost');
 /*End post ဆုိင္ရာ*/
 
 /*postlike ဆုိင္ရာ*/
-Route::post('/postlike/{id}','PostlikeController@postlike')->name('postlike');
+Route::post('/postlike/{id}','PostlikeController@postlike');
+Route::post('/ajaxgetlikeofpost','PostlikeController@ajaxgetlikeofpost');
+Route::post('/commentofpost','PostlikeController@commentofpost');
+Route::post('/ajaxgetcommentofpost','PostlikeController@ajaxgetcommentofpost');
 /*End postlike ဆုိင္ရာ*/
 
 /*gallery ဆုိင္ရာ*/

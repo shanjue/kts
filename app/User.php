@@ -4,12 +4,21 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
     public function uploadphoto()
     {
       return $this->hasMany('App\Model\ControlPanel\Uploadphoto')->orderBy('id','desc');
+    }
+    public function postlike()
+    {
+      return $this->belongsToMany('App\Model\ControlPanel\Post','user_posts');
+    }
+    public function getCreatedAtAttribute($value)
+    {
+       return Carbon::parse($value)->diffForHumans();
     }
 
     use Notifiable;
