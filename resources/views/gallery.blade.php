@@ -74,7 +74,7 @@
           @foreach($user->uploadphoto as $photo)
           <?php $count++; ?>
 
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6" data-toggle="tooltip" data-html="true" title="<i class='fas fa-location-arrow'></i> {{$photo->place}} <i class='fas fa-sticky-note'></i> {{$photo->note}}">
             <div class="gallery-item wow fadeInUp">
               <a href="{{asset('storage/'.$user->id.'/origin'.$photo->name)}}" class="gallery-popup">
                 <img src="{{asset('storage/'.$user->id.'/'.$photo->name)}}" alt="">
