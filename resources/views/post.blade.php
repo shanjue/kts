@@ -18,7 +18,7 @@
           <!-- <h2 class="subheading">Problems look mighty small from 150 miles up</h2> -->
           <span class="meta">Posted by <a href="#"> {{$post->user->name}}</a>
 
-            on {{$post->created_at->diffForHumans()}}</span>
+            on {{$post->created_at}}</span>
         </div>
       </div>
     </div>
