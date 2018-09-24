@@ -139,9 +139,10 @@
                 <a href="#likemodal" id="like-{{$post->id}}" data-toggle="modal" >
                   <?php $likecount = 0; ?>
                   @foreach($user_posts as $user_post)
-                  @if($user_post->post_id == $post->id)
-                  <?php $likecount ++; ?>
-                  @endif
+
+                    @if($user_post->post_id == $post->id)
+                    <?php $likecount ++; ?>
+                    @endif
                   @endforeach
 
 
@@ -214,6 +215,13 @@
                             </span>
                       </div>
                     </form>
+                    @else
+                    <div class="input-group">
+                      <input type="text" class="form-control" >
+                      <span class="input-group-btn">
+                        <a  href="{{url('/login')}}" class="btn btn-danger btn-flat">Send</a>
+                      </span>
+                    </div>
                     @endauth
                   </div>
 
@@ -264,20 +272,28 @@ $(document).ready(function(){
 
 
         $('.like-body').empty();
-        for(var i = 0; i < data.length; i++){
+        for(var i = 0; i < data[0].length; i++){
+
+          for (var b = 0; b < data[1].length; b++) {
+            if (data[0][i]['id'] == data[1][b]['user_id'] && data[1][b]['post_id'] == data[2]['id']) {
+              var cdate = data[1][b]['created_at'];
+
+            }
+          }
 
           $('.like-body').append(
             '<div class="alert alert-info row" style="width:250px;padding-left:30px;margin-left:20px;" >'
             +  '<div>'
-            +    '<img src="{{asset("storage/userprofile")}}'
+            +    '<img src="{{asset("storage/userprofile")}} '
             +     '/'
-            +     data[i]['profile']
+            +     data[0][i]['profile']
             +    '" alt="" class="rounded-circle " width="60px" height="60px" >'
             +  '</div>'
             +  '<div style="margin-left:20px;">'
-            + data[i]['name']
+            +  data[0][i]['name']
+            + '<br/>'
+            +  cdate
             +  '</div>'
-            +  data[0]['pivot']['created_at']
             +'</div>'
           );
         }
@@ -301,7 +317,7 @@ $(document).ready(function(){
 
 
         $('.comment-body').empty();
-        for(var i = 0; i < data.length; i++){
+        for(var i = 0; i < data[0].length; i++){
 
 
 
@@ -315,6 +331,8 @@ $(document).ready(function(){
           $('.comment-body').append(
             '<div class="alert alert-info " style="padding-left:30px;margin-left:20px;" >'
             + '<div>'
+            +  user
+            + '-'
             + data[0][i]['created_at']
             +'</div>'
             + '<div class="row">'
@@ -323,7 +341,7 @@ $(document).ready(function(){
             +     '/'
             +     profile
             +    '" alt="" class="rounded-circle " width="60px" height="60px" ><br>'
-            +  user
+
 
             +  '</div>'
             +  '<div class="col-md-6 alert alert-danger" style="margin-left:10px;">'

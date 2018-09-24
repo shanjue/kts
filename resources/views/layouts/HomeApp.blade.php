@@ -52,6 +52,7 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('js/jquery.timeago.js')}}" ></script>
     <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     @section('script')
       @show

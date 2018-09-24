@@ -17,8 +17,8 @@ class CreateUserPostsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('post_id')->unsigned()->index();
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->timestamps();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('Cascade');
         });
     }
 

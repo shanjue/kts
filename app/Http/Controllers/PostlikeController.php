@@ -37,7 +37,8 @@ class PostlikeController extends Controller
 
     $post = Post::where('id',Request()->id)->with('userlike')->first();
     $users = $post->userlike;
-    return $users;
+    $user_posts = user_post::all();
+    return [$users, $user_posts, $post];
   }
 
   public function ajaxgetcommentofpost()

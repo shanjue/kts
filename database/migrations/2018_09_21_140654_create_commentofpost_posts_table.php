@@ -17,6 +17,7 @@ class CreateCommentofpostPostsTable extends Migration
             $table->integer('commentofpost_id')->unsigned()->index();
             $table->integer('post_id')->unsigned()->index();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('Cascade');
+
             $table->timestamps();
         });
     }
@@ -28,6 +29,8 @@ class CreateCommentofpostPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment_posts');
+      DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('commentofpost_posts');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
