@@ -284,7 +284,7 @@ $(document).ready(function(){
           $('.like-body').append(
             '<div class="alert alert-info row" style="width:250px;padding-left:30px;margin-left:20px;" >'
             +  '<div>'
-            +    '<img src="{{asset("storage/userprofile")}} '
+            +    '<img src="{{asset("storage/userprofile")}}'
             +     '/'
             +     data[0][i]['profile']
             +    '" alt="" class="rounded-circle " width="60px" height="60px" >'
