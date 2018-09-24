@@ -76,8 +76,8 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="gallery-item wow fadeInUp">
-              <a href="{{asset('storage/'.$user->created_at->toDateString().$user->id.'/origin'.$photo->name)}}" class="gallery-popup">
-                <img src="{{asset('storage/'.$user->created_at->toDateString().$user->id.'/'.$photo->name)}}" alt="">
+              <a href="{{asset('storage/'.$user->id.'/origin'.$photo->name)}}" class="gallery-popup">
+                <img src="{{asset('storage/'.$user->id.'/'.$photo->name)}}" alt="">
               </a>
             </div>
           </div>
@@ -88,7 +88,7 @@
 
           @if($count == 5)
 
-          <div class="col-lg-4 col-md-6 gallery-item wow fadeInUp total" style="background-image:url({{asset('storage/'.$user->created_at->toDateString().$user->id.'/origin'.$photo->name)}}); background-position:0 0;">
+          <div class="col-lg-4 col-md-6 gallery-item wow fadeInUp total" style="background-image:url({{asset('storage/'.$user->id.'/origin'.$photo->name)}}); background-position:0 0;">
 
             <a href="{{url('/moregallery/'.$user->id)}}"  style="font-size:200px;">
               +{{$total}}
