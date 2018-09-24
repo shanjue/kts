@@ -337,8 +337,7 @@ $(document).ready(function(){
             +'</div>'
             + '<div class="row">'
             +  '<div class="col-md-2">'
-            +    '<img src="{{asset("storage/userprofile")}}'
-            +     '/'
+            +    '<img src="{{asset("storage/userprofile")}}/'
             +     profile
             +    '" alt="" class="rounded-circle " width="60px" height="60px" ><br>'
 
