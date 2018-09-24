@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\ControlPanel\user_post;
 use App\Model\ControlPanel\Post;
 use App\User;
-use App\Model\ControlPanel\commentofpost;
+use App\Model\ControlPanel\Commentofpost;
 
 class PostlikeController extends Controller
 {
@@ -24,7 +24,7 @@ class PostlikeController extends Controller
   public function commentofpost()
   {
 
-    $comment = new commentofpost();
+    $comment = new Commentofpost();
     $comment->user_id =Request()->user_id;
     $comment->comment =Request()->comment;
     $comment->save();
