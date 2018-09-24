@@ -118,7 +118,7 @@ class ControlPanelController extends Controller
       $this->validate(Request(),[
         'image'=>'required|image|max:2048|mimes:jpeg,png,jpg'
       ]);
-      $foldername = Auth::user()->created_at->toDateString() . Auth::user()->id;
+      $foldername = Auth::user()->id;
       Storage::makeDirectory("public/$foldername");
 
       $imagename = time() . '.jpg';

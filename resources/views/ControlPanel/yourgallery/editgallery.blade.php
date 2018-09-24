@@ -65,7 +65,7 @@
             <div class="row">
               @foreach($user->uploadphoto as $photo)
               <div class="col-12 alert alert-danger">
-                <img class="advanced-feature-img-left " src="{{asset('storage/'.$user->created_at->toDateString().$user->id.'/'.$photo->name)}}" alt="" width="400px">
+                <img class="advanced-feature-img-left " src="{{asset('storage/'.$user->id.'/'.$photo->name)}}" alt="" width="400px">
                 <div class="wow fadeInRight">
                   <form method="post">
                   {{csrf_field() }}

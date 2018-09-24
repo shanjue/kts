@@ -29,7 +29,7 @@
       <div class="modal-body">
         <ul>
 
-          <li style="color:red;list-style:square;" class="alert alert-danger"><div class="input-group"><a class="btn btn-primary" id="myCopyButton-{{$uploadphoto->id}}" data-dismiss="modal">Copy</a><input type="text" class="form-control" id="myCopyInput-{{$uploadphoto->id}}" value="{{$_ENV['APP_URL']}}/storage/{{Auth::user()->created_at->toDateString().Auth::user()->id}}/origin{{$uploadphoto->name}}"></div></li>
+          <li style="color:red;list-style:square;" class="alert alert-danger"><div class="input-group"><a class="btn btn-primary" id="myCopyButton-{{$uploadphoto->id}}" data-dismiss="modal">Copy</a><input type="text" class="form-control" id="myCopyInput-{{$uploadphoto->id}}" value="{{$_ENV['APP_URL']}}/storage/{{Auth::user()->id}}/origin{{$uploadphoto->name}}"></div></li>
           <br>
 
           <li style="color:red;list-style:square;" class="alert alert-danger"><img src="{{url('storage/howto/capture1.jpg')}}" ></li>
@@ -68,10 +68,10 @@
 
                     @foreach($user->uploadphoto as $uploadphoto)
                     <div class="col-xs-6 col-md-2 "  >
-                      <input type="checkbox" name="titlephoto"   value="{{$_ENV['APP_URL']}}/storage/{{Auth::user()->created_at->toDateString()}}{{Auth::user()->id}}/{{$uploadphoto->name}}" style="margin-left:3.5em;">
+                      <input type="checkbox" name="titlephoto"   value="{{$_ENV['APP_URL']}}/storage/{{Auth::user()->id}}/{{$uploadphoto->name}}" style="margin-left:3.5em;">
                       <div class="gallery-item wow fadeInUp">
-                        <a href='{{asset("storage/".Auth::user()->created_at->toDateString().Auth::user()->id."/origin"."$uploadphoto->name")}}' class="gallery-popup">
-                          <img src='{{asset("storage/".Auth::user()->created_at->toDateString().Auth::user()->id."/$uploadphoto->name")}}' alt="" class="img-thumbnail rounded float-left" style="width:120px;">
+                        <a href='{{asset("storage/".Auth::user()->id."/origin"."$uploadphoto->name")}}' class="gallery-popup">
+                          <img src='{{asset("storage/".Auth::user()->id."/$uploadphoto->name")}}' alt="" class="img-thumbnail rounded float-left" style="width:120px;">
                         </a>
                       </div>
                     </div>
@@ -91,7 +91,7 @@
                   <div id="choosephoto-{{$uploadphoto->id}} " class="col-xs-6 col-md-2" data-toggle="tooltip" title="Click on photo">
                     <input type="hidden" id="image_id" value="{{$uploadphoto->id}}">
                     <a href="#myModal-{{$uploadphoto->id}}" data-toggle="modal">
-                      <img src='{{asset("storage/".Auth::user()->created_at->toDateString().Auth::user()->id."/$uploadphoto->name")}}' alt=""  width="130px" height="130px" style="border-radius:5px;margin-bottom:5px;">
+                      <img src='{{asset("storage/".Auth::user()->id."/$uploadphoto->name")}}' alt=""  width="130px" height="130px" style="border-radius:5px;margin-bottom:5px;">
                     </a>
                   </div>
                   @endforeach
