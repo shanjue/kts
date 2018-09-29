@@ -50,3 +50,6 @@ Route::get('/cat','ControlPanelController@cat');
 /*--XHR*/ Route::post('/catupdate','ControlPanelController@catupdate');
 
 Auth::routes();
+
+Route::get('login/{service}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{service}/callback', 'Auth\LoginController@handleProviderCallback');
