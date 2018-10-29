@@ -49,12 +49,14 @@ class HomeController extends Controller
     {
       $categories = Category::all();
       $user_posts = user_post::all();
+      $commentofpost_posts =commentofpost_post::all();
       $posts = $category->post()->orderBy('id','desc')->paginate(10);
       return view('blog',[
         'posts'=>$posts,
         'categories'=>$categories,
         'categorystatus'=>$category->name,
         'user_posts'=>$user_posts,
+        'commentofposts' => $commentofpost_posts,
         'homenav'=>'newposts'
       ]);
     }
