@@ -11,7 +11,7 @@ trait RegistersUsers
     use RedirectsUsers;
 
     /**
-     * Show the application registration form.
+     * Show the application registration form.,
      *
      * @return \Illuminate\Http\Response
      */
